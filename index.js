@@ -19,10 +19,10 @@ async function fetchDeckName(deckCode) {
     const container = document.querySelector('#wrap > div > div');
     const deckName = container.querySelector('div > h2');
     const deckType = document.querySelector('#viewpage > div.preview-top-label > div.row.deck-preview-top-info > p.col-lg-6.col-12.preview-top-label-right > span');
-    console.log(`デッキコード「${deckCode}」のデッキ名は「${deckType}」です。`);
+    console.log(`デッキコード「${deckCode}」のタイトルは「${deckType}」です。`);
     const nameHtml = deckName.innerHTML;
     const TypeHtml = deckType.innerHTML;
-    console.log(`デッキコード「${deckCode}」のデッキ名は「${TypeHtml}」です。`);
+    console.log(`デッキコード「${deckCode}」のタイトルは「${TypeHtml}」です。`);
     // デッキ名「？？？」のデッキ -> ？？？
     const prefixLength = 5;
     const suffixLength = 5;
