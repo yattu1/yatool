@@ -1,6 +1,7 @@
 import { JSDOM } from 'jsdom';
 import puppeteer from 'puppeteer';
 
+
 async function fetchDeckName(deckCode) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -23,6 +24,19 @@ async function fetchDeckName(deckCode) {
     const nameHtml = deckName.innerHTML;
     const TypeHtml = deckType.innerHTML;
     console.log(`デッキコード「${deckCode}」のタイトルは「${TypeHtml}」です。`);
+    const deckrow = document.querySelector('#viewpage > div.deckview > div > div');
+
+    //CXだけ取得したいときはワイドカードを選択
+//    const card_items = deckrow.getElementsByClassName("card-container card-view wide-card");
+    const card_items = deckrow.getElementsByClassName("card-container card-view");
+    for (const card_item of card_items) {
+       // console.log(card_item.innerHTML);
+      const card_image = card_item.querySelector('img');
+      const card_num = card_item.querySelector(' div > div > div > span.num')
+      const card_numHtml =card_num.innerHTML;
+        console.log(card_image.alt);
+        console.log(card_numHtml);
+    }
     // デッキ名「？？？」のデッキ -> ？？？
     const prefixLength = 5;
     const suffixLength = 5;
@@ -31,7 +45,10 @@ async function fetchDeckName(deckCode) {
         .substring(0, nameHtml.length - (prefixLength + suffixLength));
 };
 
+
+
 const deckCode = '6YPH';
+//const deckCode = '57P2';
 const deckName = await fetchDeckName(deckCode);
 
 
